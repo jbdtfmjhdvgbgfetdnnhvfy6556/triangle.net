@@ -1,0 +1,38 @@
+using System;
+using System;
+class MainClass {
+	public static void Main(string[] args) {
+	Console.Write(" Enter a date string in MMDDYYYY foramt: ");
+	string dateString = Console.ReadLine();
+	
+	if (IsValidDateMMDDYYYY(dateString)) {
+		Console.WriteLine($"{dateString} is a valid date in MMDDYYYY foramt: ");
+	} else {
+		Console.WriteLine($"{dateString} is a not a valid date in MMDDYYYY foramt: ");
+	}
+}
+
+public static bool IsValidDateMMDDYYYY(string dateString) {
+	if(dateString.Length != 8) {
+		return false; // Date string must have exactly 8 characters 
+	}
+
+	foreach (char c in dateString) {
+		if(!char.IsDigit(c)) {
+			return false; // date string must consist of digits only
+		}
+	}
+	
+	int month = int.Parse(dateString.Substring(0,2));
+	int day = int.Parse(dateString.Substring(2,2));
+	int year = int.Parse(dateString.Substring(4,4));
+
+	if (month < 1 || month > 12 || day < 1 || day > 31 || year < 1000) {
+		return false; // invalid month, day, or year
+	}
+	
+	// Additional validation logic can be added based on your specific requirements 
+
+	return true;
+}
+} // Additional validation logic 
